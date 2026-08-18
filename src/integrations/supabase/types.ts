@@ -14,7 +14,187 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      pppoe_profiles: {
+        Row: {
+          created_at: string
+          dns_server: string
+          id: string
+          local_address: string
+          name: string
+          price: number
+          rate_limit: string
+          remote_address: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          dns_server?: string
+          id?: string
+          local_address?: string
+          name: string
+          price?: number
+          rate_limit?: string
+          remote_address?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          dns_server?: string
+          id?: string
+          local_address?: string
+          name?: string
+          price?: number
+          rate_limit?: string
+          remote_address?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      pppoe_secrets: {
+        Row: {
+          comment: string | null
+          created_at: string
+          disabled: boolean
+          expires_at: string | null
+          id: string
+          password: string
+          profile_name: string
+          remote_address: string | null
+          router_id: string | null
+          service: string
+          user_id: string
+          username: string
+        }
+        Insert: {
+          comment?: string | null
+          created_at?: string
+          disabled?: boolean
+          expires_at?: string | null
+          id?: string
+          password: string
+          profile_name?: string
+          remote_address?: string | null
+          router_id?: string | null
+          service?: string
+          user_id: string
+          username: string
+        }
+        Update: {
+          comment?: string | null
+          created_at?: string
+          disabled?: boolean
+          expires_at?: string | null
+          id?: string
+          password?: string
+          profile_name?: string
+          remote_address?: string | null
+          router_id?: string | null
+          service?: string
+          user_id?: string
+          username?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pppoe_secrets_router_id_fkey"
+            columns: ["router_id"]
+            isOneToOne: false
+            referencedRelation: "routers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pppoe_sessions: {
+        Row: {
+          address: string
+          caller_id: string | null
+          id: string
+          router_id: string | null
+          started_at: string
+          user_id: string
+          username: string
+        }
+        Insert: {
+          address: string
+          caller_id?: string | null
+          id?: string
+          router_id?: string | null
+          started_at?: string
+          user_id: string
+          username: string
+        }
+        Update: {
+          address?: string
+          caller_id?: string | null
+          id?: string
+          router_id?: string | null
+          started_at?: string
+          user_id?: string
+          username?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pppoe_sessions_router_id_fkey"
+            columns: ["router_id"]
+            isOneToOne: false
+            referencedRelation: "routers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          company_name: string
+          created_at: string
+          email: string | null
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          company_name?: string
+          created_at?: string
+          email?: string | null
+          id: string
+          updated_at?: string
+        }
+        Update: {
+          company_name?: string
+          created_at?: string
+          email?: string | null
+          id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      routers: {
+        Row: {
+          created_at: string
+          id: string
+          ip_address: string
+          location: string | null
+          name: string
+          status: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          ip_address: string
+          location?: string | null
+          name: string
+          status?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          ip_address?: string
+          location?: string | null
+          name?: string
+          status?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
